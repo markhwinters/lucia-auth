@@ -1,14 +1,15 @@
-import SignInForm from "@/components/forms/SignInForm";
+import ResetPasswordForm from '@/components/forms/ResetPasswordForm'
 import { cookies } from "next/headers";
 import { lucia } from "@/lib/lucia";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign In",
+  title: "Reset Password",
 };
 
-export default async function SignInPage() {
+export default async function ResetPassword({ params }: { params: { token: string } }) {
+  
   const sessionId = cookies().get(lucia.sessionCookieName)?.value;
   if (!sessionId) {
     return
@@ -18,10 +19,11 @@ export default async function SignInPage() {
   if (user) {
     redirect("/dashboard");
   }
-
+  
   return (
     <div className="flex min-h-[80dvh] items-center justify-center py-24">
-      <SignInForm />
+      <h1>Reset Password</h1>
+      <ResetPasswordForm params={params} />
     </div>
-  );
+  )
 }

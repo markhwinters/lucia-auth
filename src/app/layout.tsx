@@ -30,8 +30,9 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <Toaster richColors />
       </body>
-      <Toaster richColors />
+      
     </html>
   );
 }

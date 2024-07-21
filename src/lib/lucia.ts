@@ -4,6 +4,19 @@ import { prisma } from "./prisma";
 import { cookies } from "next/headers";
 
 const adapter = new PrismaAdapter(prisma.session, prisma.user);
+declare module "lucia" {
+	interface Register {
+		Lucia: typeof lucia;
+		DatabaseUserAttributes: DatabaseUserAttributes;
+	}
+}
+
+interface DatabaseUserAttributes {
+  username: string;
+  email: string;
+  role: string;
+}
+
 
 export const lucia = new Lucia(adapter, {
   sessionCookie: {
@@ -13,6 +26,14 @@ export const lucia = new Lucia(adapter, {
       secure: process.env.NODE_ENV === "production",
     },
   },
+  getUserAttributes: (attributes: DatabaseUserAttributes) => {
+    return {
+      username: attributes.username,
+      email: attributes.email,
+      role: attributes.role,
+    };
+  },
+
 });
 
 export const getUser = async () => {
@@ -47,6 +68,7 @@ export const getUser = async () => {
     select: {
       username: true,
       email: true,
+      role: true,
       picture: true,
     },
   });
