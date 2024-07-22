@@ -110,7 +110,7 @@ const SignInForm = () => {
     </CardContent>
     <CardFooter>
       <p>
-        Don't have an account? &nbsp;
+        Dont have an account? &nbsp;
         <Link href="/sign-up" className="text-blue-500">
           Sign up
         </Link>
