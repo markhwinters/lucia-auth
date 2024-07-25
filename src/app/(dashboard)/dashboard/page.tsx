@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { lucia } from "@/lib/lucia";
+import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -37,16 +37,11 @@ const MenuList = ({ items }: { items: { name: string; href: string }[] }) => (
 );
 
 export default async function DashboardPage() {
-  const sessionId = cookies().get(lucia.sessionCookieName)?.value;
-  if (!sessionId) {
-    redirect("/sign-in");
-  }
+  const { user } = await validateRequest()
 
-  const { user } = await lucia.validateSession(sessionId);
-  if (!user) {
-    redirect("/sign-in");
+  if (user) {
+    return redirect("/")
   }
-
   return (
     <div>
       <h1>Dashboard</h1>
