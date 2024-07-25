@@ -1,6 +1,6 @@
 import SignInForm from "@/components/forms/SignInForm";
 import { cookies } from "next/headers";
-import { lucia } from "@/lib/lucia";
+import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 
@@ -9,14 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default async function SignInPage() {
-  const sessionId = cookies().get(lucia.sessionCookieName)?.value;
-  if (!sessionId) {
-    return
-  }
+  const { user } = await validateRequest()
 
-  const { user } = await lucia.validateSession(sessionId);
   if (user) {
-    redirect("/dashboard");
+    return redirect("/")
   }
 
   return (
