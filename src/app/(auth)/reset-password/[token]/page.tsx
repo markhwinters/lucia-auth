@@ -1,7 +1,4 @@
 import ResetPasswordForm from '@/components/forms/ResetPasswordForm'
-import { cookies } from "next/headers";
-import { lucia } from "@/lib/lucia";
-import { redirect } from "next/navigation";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
