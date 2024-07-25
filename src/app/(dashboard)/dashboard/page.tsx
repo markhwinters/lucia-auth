@@ -45,7 +45,7 @@ export default async function DashboardPage() {
   return (
     <div>
       <h1>Dashboard</h1>
-      <p>Welcome, {user.username}!</p>
+      <p>Welcome, {user?.username}!</p>
       
       {/* Common navigation for all users */}
       <nav>
