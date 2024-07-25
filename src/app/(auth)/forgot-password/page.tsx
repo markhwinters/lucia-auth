@@ -9,13 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ForgotPassword() {
-  const { user } = await validateRequest()
-
-  if (user) {
-    return redirect("/dashboard")
-  }
-
-
   return (
    <div className="flex min-h-[80dvh] items-center justify-center py-24"><RequestResetForm /></div>
   )
