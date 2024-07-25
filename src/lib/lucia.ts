@@ -5,12 +5,22 @@ import { cookies } from "next/headers";
 import { cache } from "react"
 
 const adapter = new PrismaAdapter(prisma.session, prisma.user);
-declare module "lucia" {
-	interface Register {
-		Lucia: typeof lucia;
-		DatabaseUserAttributes: DatabaseUserAttributes;
-	}
-}
+
+export const lucia = new Lucia(adapter, {
+  sessionCookie: {
+    attributes: {
+      secure: process.env.NODE_ENV === "production",
+    },
+  },
+  getUserAttributes: (attributes: DatabaseUserAttributes) => {
+    return {
+      username: attributes.username,
+      email: attributes.email,
+      role: attributes.role,
+    };
+  },
+
+});
 
 export const validateRequest = cache(async () => {
   const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null
@@ -50,9 +60,10 @@ export const validateRequest = cache(async () => {
 
 // IMPORTANT!
 declare module "lucia" {
-  interface Register {
-    Lucia: typeof lucia
-  }
+	interface Register {
+		Lucia: typeof lucia;
+		DatabaseUserAttributes: DatabaseUserAttributes;
+	}
 }
 
 interface DatabaseUserAttributes {
@@ -61,18 +72,4 @@ interface DatabaseUserAttributes {
   role: string;
 }
 
-export const lucia = new Lucia(adapter, {
-  sessionCookie: {
-    attributes: {
-      secure: process.env.NODE_ENV === "production",
-    },
-  },
-  getUserAttributes: (attributes: DatabaseUserAttributes) => {
-    return {
-      username: attributes.username,
-      email: attributes.email,
-      role: attributes.role,
-    };
-  },
 
-});
