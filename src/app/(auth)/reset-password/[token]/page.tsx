@@ -9,18 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ResetPassword({ params }: { params: { token: string } }) {
-  
-  const sessionId = cookies().get(lucia.sessionCookieName)?.value;
-  if (!sessionId) {
-    return
-  }
-
-  const { user } = await lucia.validateSession(sessionId);
-  if (user) {
-    redirect("/dashboard");
-  }
-  
-  return (
+   return (
     <div className="flex min-h-[80dvh] items-center justify-center py-24">
       <h1>Reset Password</h1>
       <ResetPasswordForm params={params} />
