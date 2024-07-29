@@ -30,7 +30,10 @@ import Link from "next/link";
 
 export const signUpSchema = z
   .object({
-    username: z.string().min(2, { message: "Username must be at least 2 characters long" }).max(50, { message: "Username must be no more than 50 characters long" }),
+    username: z
+      .string()
+      .min(2, { message: "Username must be at least 2 characters long" })
+      .max(50, { message: "Username must be no more than 50 characters long" }),
     email: z.string().email(),
     password: z
       .string()
@@ -160,7 +163,7 @@ const SignUpForm = () => {
       <CardFooter>
         <p>
           Already have an account? &nbsp;
-          <Link href="/sign-in" className="text-blue-500">
+          <Link href="/login" className="underline">
             Log in
           </Link>
         </p>

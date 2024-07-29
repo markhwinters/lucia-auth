@@ -62,61 +62,61 @@ const SignInForm = () => {
 
   return (
     <Card className="min-w-[400px]">
-    <CardHeader>
-      <CardTitle>Welcome back!</CardTitle>
-      <CardDescription>
-        Sign in to your account to continue.
-      </CardDescription>
-    </CardHeader>
-    <CardContent className="space-y-2">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="test@example.com" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                
-                <div className="flex items-center">
-                <FormLabel>Password</FormLabel>
-              <Link href="/forgot-password" className="ml-auto inline-block text-sm underline">
-                Forgot your password?
-              </Link>
-            </div>
-                
-                <FormControl>
-                  <Input type="password" placeholder="********" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">Log in</Button>
-        </form>
-      </Form>
-    </CardContent>
-    <CardFooter>
-      <p>
-        Don&apos;t have an account? &nbsp;
-        <Link href="/sign-up" className="text-blue-500">
-          Sign up
-        </Link>
-      </p>
-    </CardFooter>
-  </Card>
+      <CardHeader>
+        <CardTitle>Welcome back!</CardTitle>
+        <CardDescription>Sign in to your account to continue.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="test@example.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="flex items-center">
+                    <FormLabel>Password</FormLabel>
+                    <Link
+                      href="/forgot-password"
+                      className="ml-auto inline-block text-sm underline"
+                    >
+                      Forgot your password?
+                    </Link>
+                  </div>
+
+                  <FormControl>
+                    <Input type="password" placeholder="********" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit">Log in</Button>
+          </form>
+        </Form>
+      </CardContent>
+      <CardFooter>
+        <p>
+          Don&apos;t have an account? &nbsp;
+          <Link href="/signup" className="underline">
+            Sign up
+          </Link>
+        </p>
+      </CardFooter>
+    </Card>
   );
 };
 
