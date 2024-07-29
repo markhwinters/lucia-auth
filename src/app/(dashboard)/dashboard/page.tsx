@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
@@ -8,10 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default async function DashboardPage() {
-  const { user } = await validateRequest()
+  const { user } = await validateRequest();
 
-  if (user) {
-    return redirect("/sign-in")
+  if (!user) {
+    return redirect("/sign-in");
   }
   return (
     <div>

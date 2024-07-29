@@ -13,6 +13,7 @@ import { Button } from "./ui/button";
 import { CircleUser, DoorClosed } from "lucide-react";
 import { navItems } from "./Sidebar";
 import Link from "next/link";
+import { logOut } from "@/lib/actions/auth";
 
 const UserNav = () => {
   return (
@@ -45,12 +46,14 @@ const UserNav = () => {
           ))}
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="#" className="w-full flex justify-between items-center">
-              Logout
-              <span>
-                <DoorClosed className="w-4 h-4" />
-              </span>
-            </Link>
+            <form
+              action={logOut}
+              className="w-full flex justify-between items-center"
+            >
+              <Button type="submit" className="w-full" variant="ghost">
+                Logout
+              </Button>
+            </form>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

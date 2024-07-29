@@ -1,22 +1,22 @@
-import SignInForm from "@/components/forms/SignInForm";
+import SignUpForm from "@/components/forms/SignUpForm";
 import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign In",
+  title: "Sign Up",
 };
 
-export default async function SignInPage() {
-  const { user } = await validateRequest()
+export default async function SignupPage() {
+  const { user } = await validateRequest();
 
   if (user) {
-    return redirect("/")
+    return redirect("/dashboard");
   }
 
   return (
     <div className="flex min-h-[80dvh] items-center justify-center py-24">
-      <SignInForm />
+      <SignUpForm />
     </div>
   );
 }
