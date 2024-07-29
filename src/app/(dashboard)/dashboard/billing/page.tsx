@@ -10,10 +10,10 @@ import {
 } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Settings",
+  title: "Billing",
 };
 
-export default async function SettingsPage() {
+export default async function BillingPage() {
   const { user } = await validateRequest();
 
   if (!user) {
@@ -23,18 +23,20 @@ export default async function SettingsPage() {
     <div className="grid items-start gap-8">
       <div className="flex items-center justify-between px-2">
         <div className="grid gap-1">
-          <h1 className="text-3xl md:text-4xl">Dashboard</h1>
+          <h1 className="text-3xl md:text-4xl">Billing</h1>
           <p className="text-lg text-muted-foreground">
-            Site information will be displayed here
+            Settings reagding your subscription
           </p>
         </div>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>General Information</CardTitle>
+          <CardTitle>Edit Subscription</CardTitle>
           <CardDescription>
-            Gneral information will be displayed here
+            Click on the button below, this will give you the opportunity to
+            change your payment details and view your statement at the same
+            time.
           </CardDescription>
         </CardHeader>
         <CardContent>content</CardContent>

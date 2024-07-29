@@ -23,18 +23,17 @@ export default async function SettingsPage() {
     <div className="grid items-start gap-8">
       <div className="flex items-center justify-between px-2">
         <div className="grid gap-1">
-          <h1 className="text-3xl md:text-4xl">Dashboard</h1>
-          <p className="text-lg text-muted-foreground">
-            Site information will be displayed here
-          </p>
+          <h1 className="text-3xl md:text-4xl">Settings</h1>
+          <p className="text-lg text-muted-foreground">Your Profile settings</p>
         </div>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>General Information</CardTitle>
+          <CardTitle>General Data</CardTitle>
           <CardDescription>
-            Gneral information will be displayed here
+            Please provide general information about yourself. Please dont
+            forget to save
           </CardDescription>
         </CardHeader>
         <CardContent>content</CardContent>
