@@ -1,23 +1,39 @@
-"use client";
-
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 
-export default function Navbar() {
-  const user = false;
+import { useSession } from "@/components/SessionProvider";
+import { validateRequest } from "@/lib/lucia";
+import UserNav from "./UserNav";
+
+export default async function Navbar() {
+  const { user } = await validateRequest();
+
   return (
-    <nav className="flex w-screen items-center justify-between p-6 sticky top-0">
+    <nav className="flex w-screen items-center justify-between p-6">
       <div>
         <Link className="text-2xl font-bold no-underline" href="/">
-          Acme <span className="text-primary">Inc</span>
+          Lucia <span className="text-primary">Auth</span>
         </Link>
       </div>
       <div className="flex flex-row gap-x-5 items-center">
         <ThemeToggle />
-        <Button asChild>
-          <Link href="/sign-in">Sign In</Link>
-        </Button>
+        {user ? (
+          <UserNav
+            email={user.email as string}
+            username={user.username as string}
+            image={""}
+          />
+        ) : (
+          <>
+            <Button asChild variant="ghost">
+              <Link href="/login">Log in</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/signup">Sign up</Link>
+            </Button>
+          </>
+        )}
       </div>
     </nav>
   );

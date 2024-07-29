@@ -14,21 +14,34 @@ import { CircleUser, DoorClosed } from "lucide-react";
 import { navItems } from "./Sidebar";
 import Link from "next/link";
 import { logOut } from "@/lib/actions/auth";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
-const UserNav = () => {
+const UserNav = ({
+  email,
+  username,
+  image,
+}: {
+  email: string;
+  username: string;
+  image: string;
+}) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary" size="icon" className="rounded-full">
-          <CircleUser className="h-5 w-5" />
-          <span className="sr-only">Toggle user menu</span>
+        <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel>
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">name</p>
-            <p className="text-xs leading-none text-muted-foreground">email</p>
+            <p className="text-sm font-medium leading-none">{username}</p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {email}
+            </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
