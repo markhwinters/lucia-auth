@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Settings",
+  title: "Dashboard",
 };
 
 export default async function SettingsPage() {
