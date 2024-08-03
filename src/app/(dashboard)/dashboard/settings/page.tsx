@@ -17,7 +17,7 @@ export default async function SettingsPage() {
   const { user } = await validateRequest();
 
   if (!user) {
-    return redirect("/sign-in");
+    return redirect("/login");
   }
   return (
     <div className="grid items-start gap-8">

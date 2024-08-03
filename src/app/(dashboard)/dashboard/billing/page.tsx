@@ -17,7 +17,7 @@ export default async function BillingPage() {
   const { user } = await validateRequest();
 
   if (!user) {
-    return redirect("/sign-in");
+    return redirect("/login");
   }
   return (
     <div className="grid items-start gap-8">
@@ -25,7 +25,7 @@ export default async function BillingPage() {
         <div className="grid gap-1">
           <h1 className="text-3xl md:text-4xl">Billing</h1>
           <p className="text-lg text-muted-foreground">
-            Settings reagding your subscription
+            Settings regarding your subscription
           </p>
         </div>
       </div>

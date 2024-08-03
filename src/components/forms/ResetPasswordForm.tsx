@@ -27,7 +27,8 @@ import { resetPassword } from "@/lib/actions/auth";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-export const ResetPasswordSchema = z.object({
+export const ResetPasswordSchema = z
+  .object({
     password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters long" }),
@@ -40,13 +41,17 @@ export const ResetPasswordSchema = z.object({
     path: ["confirmPassword"],
   });
 
-export default function ResetPasswordForm({ params }: { params: { token: string } }) {
+export default function ResetPasswordForm({
+  params,
+}: {
+  params: { token: string };
+}) {
   const router = useRouter();
   const form = useForm<z.infer<typeof ResetPasswordSchema>>({
     resolver: zodResolver(ResetPasswordSchema),
     defaultValues: {
-        confirmPassword: "",
-        password: "",
+      confirmPassword: "",
+      password: "",
     },
   });
 
@@ -55,7 +60,7 @@ export default function ResetPasswordForm({ params }: { params: { token: string 
     const res = await resetPassword(params.token, values.password);
     if (res?.success) {
       toast.success("Check your email for instructions");
-      router.push("/sign-in");
+      router.push("/login");
     } else {
       toast.error(res?.error);
     }
@@ -72,7 +77,7 @@ export default function ResetPasswordForm({ params }: { params: { token: string 
       <CardContent className="space-y-2">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          <FormField
+            <FormField
               control={form.control}
               name="password"
               render={({ field }) => (
@@ -115,12 +120,11 @@ export default function ResetPasswordForm({ params }: { params: { token: string 
               )}
             />
             <Button type="submit" className="self-start">
-             Save Password
+              Save Password
             </Button>
           </form>
         </Form>
       </CardContent>
-
     </Card>
   );
-};
+}

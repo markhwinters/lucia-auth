@@ -28,8 +28,8 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 export const RequestResetSchema = z.object({
-    email: z.string().email(),
-  })
+  email: z.string().email(),
+});
 
 export default function RequestResetForm() {
   const router = useRouter();
@@ -45,7 +45,7 @@ export default function RequestResetForm() {
     const res = await requestPasswordReset(values);
     if (res?.success) {
       toast.success("Check your email for instructions");
-      router.push("/sign-in");
+      router.push("/login");
     } else {
       toast.error(res?.error);
     }
@@ -86,7 +86,6 @@ export default function RequestResetForm() {
           </form>
         </Form>
       </CardContent>
-
     </Card>
   );
-};
+}
