@@ -34,7 +34,9 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <SessionProvider value={sessionData}>{children}</SessionProvider>
+          <SessionProvider value={sessionData}>
+            <main className="container px-3 py-3">{children}</main>
+          </SessionProvider>
         </ThemeProvider>
         <Toaster richColors />
       </body>
