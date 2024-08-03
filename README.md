@@ -1,4 +1,4 @@
-# NextAuth Supabase Starter
+# NextJS Lucia Auth Starter
 
 This project is a starter template for building web applications using Next.js 14, Lucia Auth, Shadcn UI, Supabase, and Prisma
 
